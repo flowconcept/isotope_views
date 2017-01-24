@@ -1,0 +1,19 @@
+isotope:
+  version: 3.0.1
+  js:
+    /bower_components/isotope/dist/isotope.pkgd.min.js: {}
+    /bower_components/imagesloaded/imagesloaded.pkgd.min.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupal
+
+isotope_views:
+  version: VERSION
+  css:
+    component:
+      css/isotope_views.css: {}
+  js:
+    js/isotope_views.js: {}
+  dependencies:
+    - isotope_views/isotope
