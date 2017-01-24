@@ -1,2 +1,3 @@
-# isotope_views
-Views display plugin with isotope integration (drupal 8)
+# Isotope Views
+Views display plugin with [isotope](https://github.com/metafizzy/isotope) integration (drupal 8)
+
