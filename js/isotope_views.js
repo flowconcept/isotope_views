@@ -11,10 +11,47 @@
         .isotope({
           itemSelector: '.grid-item',
           percentPosition: true,
+          layoutMode: 'masonry',
           masonry: {
             columnWidth: '.grid-sizer'
           }
         });
+
+      //****************************
+      // Isotope Load more button
+      //****************************
+      var initShow = 4; //number of items loaded on init & onclick load more button
+      var counter = initShow; //counter for load more button
+      var isotope = $grid.data('isotope'); // get Isotope instance
+
+      loadMore(initShow); //execute function onload
+
+
+      function loadMore(toShow) {
+
+        var shownElems = isotope.filteredItems.slice(0, toShow).map(function(item) {
+          return item.element;
+        });
+        $(shownElems).removeClass('hidden');
+        $grid.isotope('layout');
+
+        //when no more to load, hide show more button
+        if ($grid.find(".hidden").length == 0) {
+          $("#isotope-load-more").hide();
+        };
+
+      }
+
+      //append load more button
+      $grid.after('<button type="button" class="btn btn-default btn-lg" id="isotope-load-more"> Load More</button>');
+
+      //when load more button clicked
+      $("#isotope-load-more").click(function() {
+        counter = counter + initShow;
+
+        loadMore(counter);
+        $grid.isotope('layout');
+      });
 
       var timer;
 

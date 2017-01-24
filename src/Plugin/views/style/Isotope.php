@@ -54,6 +54,7 @@ class Isotope extends StylePluginBase {
 
     $options['row_class'] = ['default' => 'grid-item'];
     $options['wrapper_class'] = [ 'default' => 'isotope-grid'];
+    $options['initial_number_of_items'] = [ 'default' => '0'];
 
     return $options;
   }
@@ -66,12 +67,20 @@ class Isotope extends StylePluginBase {
 
     $form['row_class']['#default_value'] = $this->options['row_class'];
 
-    $form['wrapper_class'] = array(
+    $form['wrapper_class'] = [
       '#type' => 'textfield',
       '#title' => t('Wrapper classes'),
       '#default_value' => $this->options['wrapper_class'],
       '#description' => t('Extra classes for the isotope wrapper.'),
-    );
+    ];
+
+    $form['initial_number_of_items'] = [
+      '#type' => 'textfield',
+      '#title' => t('Number of items to show initially'),
+      '#default_value' => $this->options['initial_number_of_items'],
+      '#description' => t('Show this number of items initially, more button adds some. Use 0 for all.'),
+
+    ];
 
   }
 }
