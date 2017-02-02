@@ -16,7 +16,6 @@
             columnWidth: '.grid-sizer'
           }
         });
-//        .once('isotope-processed')
 
       if ($grid.length) {
         //****************************
@@ -29,20 +28,6 @@
         loadMore(initShow); //execute function onload
 
 
-        function loadMore(toShow) {
-
-          var shownElems = isotope.filteredItems.slice(0, toShow).map(function (item) {
-            return item.element;
-          });
-          $(shownElems).removeClass('hidden');
-          $grid.isotope('layout');
-
-          //when no more to load, hide show more button
-          if ($grid.find(".hidden").length == 0) {
-            $("#isotope-load-more").hide();
-          }
-        };
-
         //append load more button
         $grid.after('<button type="button" class="btn btn-default btn-lg" id="isotope-load-more"> Load More</button>');
 
@@ -53,24 +38,39 @@
           loadMore(counter);
           $grid.isotope('layout');
         });
-
-        var timer;
-
-        // Repaint layout
-        var layout = function () {
-          if (timer) {
-            clearTimeout(timer);
-          }
-          // iOS Safari requires 72msec delay, why?
-          timer = setTimeout(function () {
-            $grid.isotope('layout');
-          }, 72);
-        };
-
-        // Attach to imageloaded and flexslider events
-        $grid.imagesLoaded().progress(layout);
-        // $grid.on('flexslider-init', layout);
       }
+
+      function loadMore(toShow) {
+
+        var shownElems = isotope.filteredItems.slice(0, toShow).map(function (item) {
+          return item.element;
+        });
+        $(shownElems).removeClass('hidden');
+        $grid.isotope('layout');
+
+        //when no more to load, hide show more button
+        if ($grid.find(".hidden").length == 0) {
+          $("#isotope-load-more").hide();
+        }
+      };
+
+      var timer;
+
+      // Repaint layout
+      var layout = function () {
+        if (timer) {
+          clearTimeout(timer);
+        }
+        // iOS Safari requires 72msec delay, why?
+        timer = setTimeout(function () {
+          $grid.isotope('layout');
+        }, 72);
+      };
+
+      // Attach to imageloaded and flexslider events
+      $grid.imagesLoaded().progress(layout);
+      // $grid.on('flexslider-init', layout);
+
     }
   };
 
