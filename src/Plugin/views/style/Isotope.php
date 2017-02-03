@@ -54,7 +54,8 @@ class Isotope extends StylePluginBase {
 
     $options['row_class'] = ['default' => 'grid-item'];
     $options['wrapper_class'] = [ 'default' => 'isotope-grid'];
-    $options['initial_number_of_items'] = [ 'default' => '0'];
+    $options['use_load_more'] = ['default' => FALSE];
+    $options['initial_number_of_items'] = [ 'default' => '4'];
 
     return $options;
   }
@@ -74,13 +75,44 @@ class Isotope extends StylePluginBase {
       '#description' => t('Extra classes for the isotope wrapper.'),
     ];
 
+    $form['use_load_more'] = [
+      '#type' => 'checkbox',
+      '#title' => t('Load more'),
+      '#default_value' => $this->options['use_load_more'],
+      '#description' => t('Adds load more button and hides images initially.')
+    ];
+
     $form['initial_number_of_items'] = [
       '#type' => 'textfield',
       '#title' => t('Number of items to show initially'),
       '#default_value' => $this->options['initial_number_of_items'],
-      '#description' => t('Show this number of items initially, more button adds some. Use 0 for all.'),
-
+      '#description' => t('Show this number of items initially, more button adds same amount. Use 0 for all.'),
+      '#states' => [
+        'visible' => [
+          ':input[name="style_options[use_load_more]"]' => ['checked' => TRUE],
+        ],
+      ]
     ];
 
+  }
+
+  /**
+   * Return only certain option values.
+   *
+   * @return array
+   */
+  public function filterOptions() {
+    $options = array();
+    $defaults = $this->defineOptions();
+
+    foreach ($this->options as $key => $value) {
+      if (in_array($key, ['use_load_more', 'initial_number_of_items'])) {
+        $value = $this->options[$key];
+        if (!is_null($value)) {
+          $options[$key] = $value;
+        }
+      }
+    }
+    return $options;
   }
 }

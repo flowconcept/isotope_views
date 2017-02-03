@@ -5,7 +5,6 @@ isotope:
     /bower_components/imagesloaded/imagesloaded.pkgd.min.js: {}
   dependencies:
     - core/jquery
-    - core/jquery.once
     - core/drupal
 
 isotope_views:
