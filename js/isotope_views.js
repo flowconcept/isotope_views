@@ -65,7 +65,8 @@
           var timer;
 
           // Repaint layout
-          var layout = function () {
+          var layout = function (e) {
+            console.log('triggered by ' + e.type);
             if (timer) {
               clearTimeout(timer);
             }
@@ -75,10 +76,9 @@
             }, 72);
           };
 
-          // Attach to imageloaded and flexslider events
-          $grid.imagesLoaded().progress(layout);
-          // $grid.on('flexslider-init', layout);
-
+          // Attach to lazloader and flexslider events
+          $grid.on('lazybeforeunveil', layout);
+          $grid.on('flexslider-init', layout);
         });
     }
   };
