@@ -66,7 +66,6 @@
 
           // Repaint layout
           var layout = function (e) {
-            console.log('triggered by ' + e.type);
             if (timer) {
               clearTimeout(timer);
             }
