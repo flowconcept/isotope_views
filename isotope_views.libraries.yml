@@ -1,7 +1,7 @@
 isotope:
   version: 3.0.1
   js:
-    /bower_components/isotope/dist/isotope.pkgd.min.js: {}
+    /libraries/isotope/dist/isotope.pkgd.min.js: {}
   dependencies:
     - core/jquery
     - core/drupal
