@@ -18,7 +18,7 @@ function isotope_views_requirements($phase) {
     $requirements['isotope'] = array(
       'title' => t('isotope library missing'),
       'description' => t(
-        'Seo preview requires the isotope library. Download https://github.com/metafizzy/isotope/releases/latest and extract it to /libraries/isotope.'
+        'Isotope_views requires the isotope library. Download https://github.com/metafizzy/isotope/releases/latest and extract it to /libraries/isotope.'
       ),
       'severity' => REQUIREMENT_ERROR,
     );
