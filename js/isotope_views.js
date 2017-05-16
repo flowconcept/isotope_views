@@ -34,17 +34,18 @@
 
             loadMore(initShow); //execute function onload
 
+            if (initShow < isotope.items.length) {
+              //append load more button
+              $grid.after('<div class="col-xs-12 text-center"><button type="button" class="btn btn-default btn-lg" id="isotope-load-more"> Load More</button></div>');
 
-            //append load more button
-            $grid.after('<div class="col-xs-12 text-center"><button type="button" class="btn btn-default btn-lg" id="isotope-load-more"> Load More</button></div>');
+              //when load more button clicked
+              $("#isotope-load-more").click(function () {
+                counter = counter + initShow;
 
-            //when load more button clicked
-            $("#isotope-load-more").click(function () {
-              counter = counter + initShow;
-
-              loadMore(counter);
-              $grid.isotope('layout');
-            });
+                loadMore(counter);
+                $grid.isotope('layout');
+              });
+            }
 
           }
 
