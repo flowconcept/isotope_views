@@ -36,17 +36,23 @@
 
             if (initShow < isotope.items.length) {
               //append load more button
-              $grid.after('<div class="col-xs-12 text-center"><button type="button" class="btn btn-default btn-lg" id="isotope-load-more">' + Drupal.t('Load More') + '</button></div>');
+              $grid.after('<div class="col-xs-12 text-center"><button type="button" class="btn btn-default btn-lg isotope-load-more">' + Drupal.t('Load More') + '</button></div>');
 
               //when load more button clicked
-              $("#isotope-load-more").click(function () {
-                counter = counter + initShow;
+              $(".isotope-load-more", context).on('click', function () {
+                var parent = $(this).parents('.view-gallery-images');
 
-                loadMore(counter);
+                showMoreItems(parent);
+                // loadMore(counter);
                 $grid.isotope('layout');
               });
             }
 
+          }
+
+          function showMoreItems(parent) {
+             parent.find('.hidden').removeClass('hidden');
+             parent.find('.isotope-load-more').hide();
           }
 
           function loadMore(toShow) {
@@ -59,7 +65,7 @@
 
             //when no more to load, hide show more button
             if ($grid.find(".hidden").length == 0) {
-              $("#isotope-load-more").hide();
+              $(".isotope-load-more").hide();
             }
           };
 
