@@ -6,6 +6,9 @@
    */
   Drupal.behaviors.isotope = {
     attach: function(context, settings) {
+
+      $(window).load(function() {
+
       $('.isotope-grid', context)
         .not('.isotope-attached')
         .addClass('isotope-attached')
@@ -80,6 +83,7 @@
           $grid.on('lazybeforeunveil', layout);
           $grid.on('flexslider-init', layout);
         });
+      });
     }
   };
 
