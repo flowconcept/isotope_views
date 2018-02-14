@@ -7,7 +7,7 @@
   Drupal.behaviors.isotope = {
     attach: function(context, settings) {
 
-      $(window).load(function() {
+      $(window).on('load', function() {
 
       $('.isotope-grid', context)
         .not('.isotope-attached')
