@@ -9,20 +9,27 @@
  * Implements hook_requirements().
  */
 function isotope_views_requirements($phase) {
-
   $requirements = [];
 
-  $path = DRUPAL_ROOT . '/libraries/isotope/dist/isotope.pkgd.min.js';
-
-  if (!file_exists($path)) {
-    $requirements['isotope'] = array(
-      'title' => t('isotope library missing'),
-      'description' => t(
-        'Isotope_views requires the isotope library. Download https://github.com/metafizzy/isotope/releases/latest and extract it to /libraries/isotope.'
-      ),
-      'severity' => REQUIREMENT_ERROR,
-    );
+  if ($phase != 'runtime') {
+    return [];
   }
+
+  if (function_exists('libraries_get_path')) {
+    $path = libraries_get_path('isotope-layout') . '/dist/isotope.pkgd.min.js';
+  }
+  else {
+    $path = DRUPAL_ROOT . '/libraries/isotope-layout/dist/isotope.pkgd.min.js';
+  }
+
+  $exists = is_file($path);
+
+  $requirements['isotope-layout'] = [
+    'title'       => t('Isotope library'),
+    'description' => $exists ? '' : t('The <a href=":url">Isotope library</a> should be installed at <strong>/libraries/isotope-layout/dist/isotope.pkgd.min.js</strong>, or any path supported by libraries.module if installed.', [':url' => 'https://github.com/metafizzy/isotope']),
+    'severity'    => $exists ? REQUIREMENT_OK : REQUIREMENT_ERROR,
+    'value'       => $exists ? t('Installed') : t('Not installed'),
+  ];
 
   return $requirements;
 }

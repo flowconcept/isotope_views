@@ -1,7 +1,7 @@
-isotope:
+isotope_layout:
   version: 3.0.1
   js:
-    /libraries/isotope/dist/isotope.pkgd.min.js: {}
+    /libraries/isotope-layout/dist/isotope.pkgd.min.js: {}
   dependencies:
     - core/jquery
     - core/drupal
@@ -14,4 +14,4 @@ isotope_views:
   js:
     js/isotope_views.js: {}
   dependencies:
-    - isotope_views/isotope
+    - isotope_views/isotope_layout
