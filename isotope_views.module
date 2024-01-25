@@ -25,7 +25,7 @@ function template_preprocess_views_view_isotope(&$variables) {
   $handler = $variables['view']->style_plugin;
 
   // Fetch wrapper classes from handler options.
-  $wrapper_classes = []; #['isotope-grid'];
+  $wrapper_classes = []; // ['isotope-grid'];
   if (!empty($handler->options['wrapper_class'])) {
     $wrapper_classes = array_merge($wrapper_classes, explode(' ', $handler->options['wrapper_class']));
     $wrapper_classes = array_map('\Drupal\Component\Utility\Html::cleanCssIdentifier', $wrapper_classes);
